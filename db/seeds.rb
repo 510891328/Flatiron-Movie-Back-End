@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'omdb/api'
-require 'themoviedb'
+
 Movie.destroy_all
-user = User.create(name: 'Sean', username: 'SeanP')
+user = User.create(name: 'Ashab', username: 'ashab', password: '123abc')
 
 
 client = Omdb::Api::Client.new(api_key: ENV['OMDB_KEY'])
