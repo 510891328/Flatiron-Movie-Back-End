@@ -6,5 +6,12 @@ class MoviesController < ApplicationController
     render json: movies
   end
 
+  def reviews 
+    movie = Movie.find(params[:id])
+    reviews = movie.reviews
+
+    render json: reviews
+  end
+
 
 end

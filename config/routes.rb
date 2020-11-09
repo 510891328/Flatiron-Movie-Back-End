@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :movies
   resources :users
   resources :user_movies
+  resources :reviews
 
 
+  get '/movies/:id/reviews' => 'movies#reviews'
   get '/profile' => 'users#profile'
   post '/login' => 'auth#create'
   post '/purchase' => 'user_movies#purchase'
