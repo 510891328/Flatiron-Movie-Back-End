@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   get '/profile' => 'users#profile'
   post '/login' => 'auth#create'
-  post '/purchase' => 'users#purchase'
+  post '/purchase' => 'user_movies#purchase'
 end

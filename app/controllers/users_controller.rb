@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create, :purchase]
+  skip_before_action :authorized, only: [:create]
   # def create
   #   @user = User.create(user_params)
   #   if @user.valid?
@@ -22,15 +22,6 @@ class UsersController < ApplicationController
     else
       render json: { error: 'failed to create user' }, status: :not_acceptable
     end
-  end
-
-  def purchase
-    token = decode_token(params.require(:token))
-    movie = params.require(:purchase).permit!
-    
-    purchase = UserMovie.create(current_user.id)
-
-    render json: purchase
   end
 
   private
