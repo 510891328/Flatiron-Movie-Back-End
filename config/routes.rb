@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   resources :movies
   resources :users
+  resources :user_movies
+
+
   get '/profile' => 'users#profile'
   post '/login' => 'auth#create'
+  post '/purchase' => 'users#purchase'
 end
