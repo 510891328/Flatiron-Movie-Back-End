@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get '/profile' => 'users#profile'
   post '/login' => 'auth#create'
   post '/purchase' => 'user_movies#purchase'
+  get '/users/:id/reviews' => 'users#reviews'
 end

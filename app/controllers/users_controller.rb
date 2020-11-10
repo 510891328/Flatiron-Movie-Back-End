@@ -8,6 +8,12 @@ class UsersController < ApplicationController
   #     render json: { error: 'failed to create user' }, status: :not_acceptable
   #   end
   # end
+  def reviews
+    user = User.find(params[:id])
+    reviews = user.reviews
+
+    render json: reviews
+  end
 
   def profile
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
