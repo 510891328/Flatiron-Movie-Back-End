@@ -13,9 +13,12 @@ class UserMoviesController < ApplicationController
 
     movie = Movie.find(params[:movie])
 
-    purchased_movie = UserMovie.create(user: user, movie: movie)
-
-    render json: purchased_movie
+    if user.movies.include?(movie)
+      render json: {message: 'Movie Existed'}
+    else
+      purchased_movie = UserMovie.create(user: user, movie: movie)
+      render json: purchased_movie
+    end
   end
 
   private
