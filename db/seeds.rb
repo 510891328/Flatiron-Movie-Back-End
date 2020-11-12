@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'omdb/api'
+require 'tmdb/api'
 
 Movie.destroy_all
 user = User.create(name: 'Ashab', username: 'ashab', password: '123abc')
@@ -13,9 +14,15 @@ user = User.create(name: 'Ashab', username: 'ashab', password: '123abc')
 
 client = Omdb::Api::Client.new(api_key: ENV['OMDB_KEY'])
 
+Tmdb::Api.key(ENV['TMDB_KEY'])
 
-movie_titles = ['honest thief', 'come play', 'the war with grandpa', 'tenet', 'the empty man', 'the new mutants', 'joker', 'unhinged', 'jungleland', 'the shawshank redemption', "Roald Dahl's The Witches", "Rogue", "The Tax Collector", "Cats & Dogs 3: Paws Unite", "Death of Me", "1BR", "Pinocchio", "Bill & Ted Face the Music", "Cranston Academy: Monster Zone", "The Craft: Legacy", "The Croods: A New Age", "Monos", "The Lost Prince", "The Broken Hearts Gallery", "I Still Believe", "Palm Springs", "Sadako", "Fate/stay night: Heaven's Feel III. Spring Song", "The Secret: Dare to Dream"].uniq
+movie_titles = ['honest thief', 'come play', 'tenet', 'the empty man', 'joker', 'unhinged', 'jungleland', 'the shawshank redemption', "Roald Dahl's The Witches", "Rogue", "The Tax Collector", "Cats & Dogs 3: Paws Unite", "Death of Me", "1BR", "Pinocchio", "Bill & Ted Face the Music", "Cranston Academy: Monster Zone", "The Craft: Legacy", "The Croods: A New Age", "Monos", "The Lost Prince", "The Broken Hearts Gallery", "I Still Believe", "Palm Springs", "Sadako", "Fate/stay night: Heaven's Feel III. Spring Song", "The Secret: Dare to Dream"].uniq
 
+Tmdb::Movie.popular.results.each{|movie| movie_titles << movie.title}
+Tmdb::Movie.upcoming.results.each{|movie| movie_titles << movie.title}
+Tmdb::Movie.now_playing.results.each{|movie| movie_titles << movie.title}
+
+movie_titles = movie_titles.uniq
 
 prices = [19.99, 11.99, 14.99, 21.99]
 
